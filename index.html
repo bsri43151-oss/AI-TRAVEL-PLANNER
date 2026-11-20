@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Travel Planner</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>✈️ Explore The World</h1>
+
+    <p class="subtitle">
+        Plan your perfect trip with AI Travel Planner
+    </p>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form action="/plan" method="POST">
+
+        <label>Number of Destinations</label>
+        <input type="number"
+               name="destination_count"
+               min="1"
+               max="3"
+               placeholder="Example: 2"
+               required>
+
+        <label>Enter Destinations</label>
+        <input type="text"
+               name="destinations"
+               placeholder="Example: Ooty, Goa"
+               required>
+
+        <p class="hint">
+            Available places: Ooty, Goa, Munnar.
+            Separate multiple places using commas.
+        </p>
+
+        <label>Number of Days</label>
+        <input type="number"
+               name="days"
+               min="1"
+               placeholder="Example: 3"
+               required>
+
+        <label>Number of Travellers</label>
+        <input type="number"
+               name="travellers"
+               min="1"
+               placeholder="Example: 2"
+               required>
+
+        <label>Select Your Budget</label>
+        <select name="budget" required>
+            <option value="">Choose Budget</option>
+            <option value="Budget">Budget</option>
+            <option value="Mid-range">Mid-range</option>
+            <option value="Luxury">Luxury</option>
+        </select>
+
+        <label>Travel Date</label>
+        <input type="date"
+               name="date"
+               required>
+
+        <button type="submit">
+            Generate My Travel Plan ✈️
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Your Travel Plan</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🌍 Your Travel Plan</h1>
+
+    <div class="summary">
+        <h2>Trip Details</h2>
+
+        <p><strong>Destinations:</strong>
+            {{ result.destinations | join(", ") }}
+        </p>
+
+        <p><strong>Travel Date:</strong>
+            {{ result.travel_date }}
+        </p>
+
+        <p><strong>Number of Days:</strong>
+            {{ result.days }}
+        </p>
+
+        <p><strong>Travellers:</strong>
+            {{ result.travellers }}
+        </p>
+    </div>
+
+    {% for day in result.itinerary %}
+
+    <div class="day-card">
+
+        <h2>Day {{ day.day }} - {{ day.destination }}</h2>
+
+        <p><strong>Weather:</strong> {{ day.weather }}</p>
+
+        <h3>🌅 Morning Activity</h3>
+        <p>{{ day.morning }}</p>
+
+        <h3>☀️ Afternoon Activity</h3>
+        <p>{{ day.afternoon }}</p>
+
+        <h3>📍 Tourist Attraction</h3>
+        <p>{{ day.attraction }}</p>
+
+        <h3>🍽️ Food</h3>
+        <p>{{ day.food }}</p>
+
+        <h3>🏨 Hotel</h3>
+        <p>{{ day.hotel }}</p>
+
+        <h3>💰 Daily Estimated Cost</h3>
+        <p>₹{{ day.cost }}</p>
+
+    </div>
+
+    {% endfor %}
+
+    <div class="total-cost">
+        <h2>Total Estimated Trip Cost</h2>
+        <h1>₹{{ result.total_cost }}</h1>
+    </div>
+
+    <a href="/" class="back-link">← Plan Another Trip</a>
+
+</div>
+
+</body>
+</html>
